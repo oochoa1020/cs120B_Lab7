@@ -1,9 +1,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
-#ifdef _SIMULATE_
-#include "simAVRHeader.h"
-#endif
+#include "io.h"
 
 #define SET_BIT(p,i) ((p) |= (1 << (i)))
 #define CLR_BIT(p,i) ((p) &= ~(1 << (i)))
@@ -17,14 +15,6 @@
 #define E 7			// pin number of uC connected to pin 6 of LCD disp.
 
 /*-------------------------------------------------------------------------*/
-
-void LCD_init();
-void LCD_ClearScreen(void);
-void LCD_WriteCommand (unsigned char Command);
-void LCD_Cursor (unsigned char column);
-void LCD_DisplayString(unsigned char column ,const unsigned char *string);
-void delay_ms(int miliSec);
-
 
 void LCD_ClearScreen(void) {
    LCD_WriteCommand(0x01);
@@ -87,14 +77,4 @@ void delay_ms(int miliSec) //for 8 Mhz crystal
   {
    asm("nop");
   }
-}
-
-int main(void) {
-	DDRC = 0x00; PORTC = 0xFF;
-	DDRD = 0xFF; PORTD = 0x00;
-	const unsigned char h [] = "Hello World";
-	LCD_init();
-	LCD_DisplayString(1, h);
-	while(1) {continue;}
-    return 1;
 }

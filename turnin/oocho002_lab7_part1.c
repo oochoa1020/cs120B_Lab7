@@ -61,6 +61,7 @@ void tick() {
 		case wait:
 		{
 			if ((PINA & 0x03) == 0x00) {
+				LCD_ClearScreen(void);
 				LCD_WriteData( tmpB + '0');
                                 state = wait;
                                 break;
@@ -68,6 +69,7 @@ void tick() {
 			else if ((PINA & 0x03) == 0x03) {
                                 state = both;
                                 tmpB = 0;
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -76,6 +78,7 @@ void tick() {
 				if (tmpB < 9) {
 					tmpB = tmpB + 1;
 				}
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -84,6 +87,7 @@ void tick() {
                                 if (tmpB > 0) {
                                         tmpB = tmpB - 1;
                                 }
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -97,6 +101,7 @@ void tick() {
                         else if ((PINA & 0x03) == 0x03) {
                                 state = both;
                                 tmpB = 0;
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -105,6 +110,7 @@ void tick() {
                                 if (tmpB < 9) {
                                         tmpB = tmpB + 1;
                                 }
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -113,6 +119,7 @@ void tick() {
                                 if (tmpB > 0) {
                                         tmpB = tmpB - 1;
                                 }
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }	
@@ -120,6 +127,7 @@ void tick() {
 		case press1:
 		{	
 		        if ((PINA & 0x03) == 0x00) {
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
 				state = wait;
                                 break;
@@ -127,6 +135,7 @@ void tick() {
                         else if ((PINA & 0x03) == 0x03) {
                                 state = both;
                                 tmpB = 0;
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -135,6 +144,7 @@ void tick() {
                                 if (tmpB < 9) {
                                         tmpB = tmpB + 1;
                                 }
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -143,6 +153,7 @@ void tick() {
                                 if (tmpB > 0) {
                                         tmpB = tmpB - 1;
                                 }
+				LCD_ClearScreen(void);
                                 LCD_WriteData( tmpB + '0');
                                 break;
                         }
@@ -150,11 +161,13 @@ void tick() {
 		case both:
 		{	
 		        if ((PINA & 0x03) == 0x00) {
+				LCD_ClearScreen(void);
 				LCD_WriteData( tmpB + '0');
                                 state = wait;
                                 break;
                         }
                         else {
+				LCD_ClearScreen(void);
 				LCD_WriteData( tmpB + '0');
                                 state = both;
                                 break;
